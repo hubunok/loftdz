@@ -54,11 +54,21 @@ function returnFnResult(fn) {
    var f = returnCounter(10);
    console.log(f()); // выведет 11
    console.log(f()); // выведет 12
+
+
+
    console.log(f()); // выведет 13
  */
 
- var returnCounter = (number) => fn = () => ++number;
+var returnCounter = (number = 0) => () => ++number;
 
+//  function returnCounter(x = 0) {
+//     return function F() {
+//         return ++x;
+//     }
+// }
+
+//
 
 
 /*
@@ -88,13 +98,19 @@ function returnArgumentsArray() {
    var newSum = bindFunction(sum, 2, 4);
    console.log(newSum()) выведет 6
  */
- function F(a, b) {
- 	return a + b;
+ function bindFunction(fn) {
+   var args = "";
+
+   for (var i = 1; i < arguments.length; i++) {
+     args += arguments[i];
+   }
+
+   var func = fn.bind(null, args);
+
+   return func;
  }
-function bindFunction(F,...rest){
-    F = F.bind(null, rest);
-    return F;
-}
+
+
 
 export {
     returnFirstArgument,
