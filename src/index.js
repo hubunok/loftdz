@@ -51,9 +51,7 @@ function findAllPSiblings(where) {
  var first = where.firstElementChild;
   var arr = [];
   while(first = first.nextElementSibling){
-    if (first.nodeName === 'P') {
-      arr.push(first.previousElementSibling);
-    }
+    if (first.nodeName === 'P')  arr.push(first.previousElementSibling);
   }
   return arr;
 }
@@ -99,7 +97,7 @@ function findError(where) {
  */
 function deleteTextNodes(where) {
   for (let child of where.childNodes){
-    if (child.nodeType === 3) {where.removeChild(child);}
+    if (child.nodeType === 3) where.removeChild(child);
   }
 }
 
@@ -123,9 +121,9 @@ function deleteTextNodes(where) {
          if (child.nodeType === 3) {
              where.removeChild(child);
              i--;
-         } else if (child.nodeType === 1) {
-             deleteTextNodesRecursive(child); 
          }
+          if (child.nodeType === 1)  deleteTextNodesRecursive(child);
+
      }
  }
 
